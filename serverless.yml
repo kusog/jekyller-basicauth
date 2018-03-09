@@ -1,0 +1,27 @@
+# Jekyller authorization and authentication services
+
+service: jekyller-auth-services
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+
+functions:
+  login:
+    handler: handlers.login
+    events:
+      - http:
+          path: login
+          method: post
+          cors: true
+        allowCredentials: false
+  
+  verifyToken:
+    handler: handlers.verifyToken
+    events:
+      - http:
+          path: verifyToken
+          method: get
+          cors: true
+        allowCredentials: false
+        
